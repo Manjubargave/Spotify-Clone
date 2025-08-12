@@ -1,7 +1,7 @@
 import { generateCodeChallenge, generateCodeVerifier } from "../../pkce";
 
 const clientId = "41d360a9353342ccb2e05ef6d3c37ff9";
-const redirectUri = "http://127.0.0.1:5173/callback";
+const redirectUri = "https://Manjubargave.github.io/Spotify-Clone/#/callback";
 const scopes = [
   "user-read-private",
   "user-read-email",

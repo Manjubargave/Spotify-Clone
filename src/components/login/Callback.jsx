@@ -3,17 +3,27 @@ import { useNavigate } from "react-router-dom";
 import { useToken } from "../context/TokenProvider";
 
 const clientId = "41d360a9353342ccb2e05ef6d3c37ff9";
-const redirectUri = "http://127.0.0.1:5173/callback";
+const redirectUri = "https://Manjubargave.github.io/Spotify-Clone/#/callback";
 
 export default function Callback() {
   const navigate = useNavigate();
   const { setToken, setIsLoggedIn } = useToken();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    if (window.location.hash.startsWith("#%2F")) {
+      window.location.hash =
+        "#" + decodeURIComponent(window.location.hash.slice(1));
+    }
+    const hash = window.location.href; // e.g. "#/callback?code=abc123&state=xyz"
+    console.log("Hash", hash);
+    const queryString = hash.includes("?") ? hash.split("?")[1] : "";
+    console.log("QS", queryString);
+    const urlParams = new URLSearchParams(queryString);
     const code = urlParams.get("code");
     const verifier = localStorage.getItem("code_verifier");
-    console.log("Data", urlParams, code, "Verifier", verifier);
+    // console.log("Data", urlParams, code, "Verifier", verifier);
+    console.log("********CODE******", code);
+    console.log("*****VERIFIER*******", verifier);
 
     if (!code || !verifier) {
       alert("Missing code or verifier");

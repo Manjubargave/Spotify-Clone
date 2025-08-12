@@ -1,10 +1,8 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import Login from "./components/login/Login.jsx";
 import Callback from "./components/login/Callback.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import TokenProvider from "./components/context/TokenProvider.jsx";
 import SearchProvider from "./components/context/SearchContext.jsx";
@@ -16,59 +14,28 @@ import Cookies from "./components/footer/Cookies.jsx";
 import AboutAds from "./components/footer/AboutAds.jsx";
 import Accessibility from "./components/footer/Accessibility.jsx";
 import SignUp from "./components/login/SignUp.jsx";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
 
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
-  },
-  {
-    path: "/callback",
-    element: <Callback />,
-  },
-  {
-    path: "/homepage",
-    element: <Home />,
-  },
-  {
-    path: "/legal",
-    element: <Legal />,
-  },
-  {
-    path: "/safetyandprivacy",
-    element: <SafetyandPrivacy />,
-  },
-  {
-    path: "/privacy",
-    element: <PrivacyPolicy />,
-  },
-  {
-    path: "/cookies",
-    element: <Cookies />,
-  },
-  {
-    path: "/aboutads",
-    element: <AboutAds />,
-  },
-  {
-    path: "/accessibility",
-    element: <Accessibility />,
-  },
-]);
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
   <TokenProvider>
     <SearchProvider>
       <SpotifyPlayerProvider>
-        <RouterProvider router={router} />
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/callback" element={<Callback />} />
+            <Route path="/homepage" element={<Home />} />
+            <Route path="/legal" element={<Legal />} />
+            <Route path="/safetyandprivacy" element={<SafetyandPrivacy />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/aboutads" element={<AboutAds />} />
+            <Route path="/accessibility" element={<Accessibility />} />
+          </Routes>
+        </HashRouter>
       </SpotifyPlayerProvider>
     </SearchProvider>
   </TokenProvider>
